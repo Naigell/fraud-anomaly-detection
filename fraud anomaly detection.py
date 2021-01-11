@@ -35,7 +35,7 @@ print(X_train.shape)
 input_dim = X_train.shape[1]
 encoding_dim = 24
 
-#dense 4 layer autoencoder
+#dense 7 layer autoencoder
 model = Sequential()
 model.add(Dense(encoding_dim, activation="tanh", input_shape=(input_dim,)))
 model.add(Dense(int(encoding_dim / 2), activation="relu"))
