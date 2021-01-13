@@ -35,9 +35,9 @@ input_dim = X_train.shape[1]
 encoding_dim = 24
 
 #dense 7 layer autoencoder
-'''from research relu hidden layer and linear outer layer is preferred
-   but in the process of hyperparameter tuning a relu outer layer provided
-   greater accuracy.'''
+'''from research, relu or its variations for the hidden layer and a linear outer layer 
+   is preferred. In the process of hyperparameter tuning an elu outer layer provided
+   realtively satisfactory accuracy and was chosen.'''
 model = Sequential()
 model.add(Dense(encoding_dim, input_shape=(input_dim,)))
 model.add(Dense(int(encoding_dim / 2), activation="relu"))
