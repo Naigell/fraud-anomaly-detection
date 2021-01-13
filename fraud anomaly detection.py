@@ -12,8 +12,7 @@ from sklearn.metrics import confusion_matrix
 
 #import CSV dataset
 data = pd.read_csv('C:\\Users\\user\\Documents\\creditcard.csv')
-#data = data.head(150000)
-#print(data.head)
+print(data.head)
 
 #checking the class imbalance in the dataset
 print(data.groupby(['Class']).count())
@@ -36,8 +35,11 @@ input_dim = X_train.shape[1]
 encoding_dim = 24
 
 #dense 7 layer autoencoder
+'''from research relu hidden layer and linear outer layer is preferred
+   but in the process of hyperparameter tuning a relu outer layer provided
+   greater accuracy.'''
 model = Sequential()
-model.add(Dense(encoding_dim, activation="tanh", input_shape=(input_dim,)))
+model.add(Dense(encoding_dim, input_shape=(input_dim,)))
 model.add(Dense(int(encoding_dim / 2), activation="relu"))
 model.add(Dense(int(encoding_dim / 2), activation="relu"))
 model.add(Dense(int(encoding_dim / 2), activation='relu'))
