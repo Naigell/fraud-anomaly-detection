@@ -36,20 +36,20 @@ encoding_dim = 24
 
 #dense 7 layer autoencoder
 '''from research, relu or its variations for the hidden layer and a linear outer layer 
-   is preferred. In the process of hyperparameter tuning an elu outer layer provided
+   is preferred. In the process of hyperparameter tuning an elu hidden layer provided
    realtively satisfactory accuracy and was chosen.'''
 model = Sequential()
 model.add(Dense(encoding_dim, input_shape=(input_dim,)))
-model.add(Dense(int(encoding_dim / 2), activation="relu"))
-model.add(Dense(int(encoding_dim / 2), activation="relu"))
-model.add(Dense(int(encoding_dim / 2), activation='relu'))
-model.add(Dense(int(encoding_dim / 2), activation="relu"))
-model.add(Dense(int(encoding_dim / 2), activation="relu"))
-model.add(Dense(input_dim, activation='relu'))
+model.add(Dense(int(encoding_dim / 2), activation="elu"))
+model.add(Dense(int(encoding_dim / 2), activation="elu"))
+model.add(Dense(int(encoding_dim / 2), activation='elu'))
+model.add(Dense(int(encoding_dim / 2), activation="elu"))
+model.add(Dense(int(encoding_dim / 2), activation="elu"))
+model.add(Dense(input_dim))
 model.summary()
 
 #training the model
-nb_epoch = 25
+nb_epoch = 15
 batch_size = 32
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['acc'])
