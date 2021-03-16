@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import confusion_matrix
 
 #import CSV dataset
@@ -49,16 +49,19 @@ model.add(Dense(input_dim))
 model.summary()
 
 #training the model
-nb_epoch = 15
+nb_epoch = 30
 batch_size = 32
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['acc'])
+
+#monitor model training for best weight using callback
+callback = EarlyStopping(patience=5, restore_best_weights=True)
 
 history = model.fit(X_train, X_train,
                     epochs=nb_epoch,
                     batch_size=batch_size,
                     validation_data=(X_test, X_test),
-                    verbose=1)
+                    callbacks= [callback], verbose=1)
 autoencoder = model
 
 #simple plot to summarize history for accuracy
