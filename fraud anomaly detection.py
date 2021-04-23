@@ -11,7 +11,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import confusion_matrix
 
 #import CSV dataset
-data = pd.read_csv('C:\\Users\\user\\Documents\\creditcard.csv')
+data = pd.read_csv('creditcard.csv')
 print(data.head)
 
 #checking the class imbalance in the dataset
